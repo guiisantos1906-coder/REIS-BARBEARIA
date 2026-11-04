@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0b0b">
+
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Administração | Barbearia Rei’s</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css?v=20261104-area">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"
+        defer
+    ></script>
+
+<script src="admin.js?v=20261104-area" defer></script></head><body class="admin-page">    <main id="adminArea" class="reis-admin-dialog admin-page-layout" aria-labelledby="demoAdminTitle">
+      <div class="reis-admin-head"><div><p class="eyebrow">ÁREA RESTRITA</p><h1 id="demoAdminTitle">Administração Rei's</h1></div><a class="admin-back" href="./index.html">VOLTAR AO SITE ↗</a></div>
+      <p id="adminMessage" class="reis-admin-alert" role="status" aria-live="polite">Verificando acesso administrativo…</p>
+      <form id="adminLogin" class="reis-admin-login" hidden>
+        <label>E-mail<input id="adminEmail" type="email" autocomplete="username" required></label>
+        <label>Senha<input id="adminPassword" type="password" autocomplete="current-password" required></label>
+        <button class="btn primary" type="submit">ENTRAR</button>
+      </form>
+      <section id="adminPanel" hidden>
+        <div class="reis-admin-toolbar">
+          <span id="adminUser"></span><button id="adminLogout" type="button" class="btn outline">SAIR</button>
+        </div>
+        <div class="reis-admin-controls">
+          <label>Data <input id="adminDate" type="date"></label>
+          <label>Buscar cliente <input id="adminSearch" type="search" placeholder="Nome do cliente"></label><label>Profissional <select id="adminProfessional"><option value="">Todos</option></select></label>
+          <button id="adminRefresh" type="button" class="btn primary">ATUALIZAR</button>
+        </div>
+        <div class="admin-export"><button id="adminAllDates" type="button" class="btn outline">TODAS AS DATAS</button><button id="adminExport" type="button" class="btn outline">EXPORTAR CSV</button></div><div class="reis-admin-stats"><article><strong id="adminCount">0</strong><span>Reservas exibidas</span></article><article><strong id="adminPros">0</strong><span>Profissionais</span></article><article><strong id="adminToday">0</strong><span>Reservas de hoje</span></article></div>
+        <section class="reis-dashboard" aria-labelledby="reisDashTitle">
+  <div class="reis-dash-head"><div><p class="eyebrow">VISÃO GERAL</p><h3 id="reisDashTitle">ESTATÍSTICAS DE AGENDAMENTOS</h3></div><label>Período do gráfico <select id="statsPeriod"><option value="7">Últimos 7 dias</option><option value="30" selected>Últimos 30 dias</option><option value="90">Últimos 90 dias</option></select></label></div>
+  <div class="reis-kpis">
+    <article><span>HOJE</span><strong id="statsToday">0</strong></article>
+    <article><span>ESTA SEMANA</span><strong id="statsWeek">0</strong></article>
+    <article><span>ESTE MÊS</span><strong id="statsMonth">0</strong></article>
+    <article><span>NO PERÍODO</span><strong id="statsPeriodTotal">0</strong></article>
+  </div>
+  <div class="reis-dash-charts">
+    <section class="reis-chart-box"><h4>Reservas por dia</h4><div id="statsDays" class="reis-chart-bars" role="img" aria-label="Reservas por dia"></div></section>
+    <section class="reis-chart-box"><h4>Por profissional</h4><div id="statsProfessionals" class="reis-chart-list"></div></section>
+    <section class="reis-chart-box"><h4>Serviços mais agendados</h4><div id="statsServices" class="reis-chart-list"></div></section>
+  </div>
+  <p class="reis-dash-note">Estatísticas de reservas atualmente cadastradas. Agendamentos excluídos não são contabilizados; não representam faturamento nem atendimentos concluídos.</p>
+</section>
+        <div class="reis-admin-table"><table><thead><tr><th>Data</th><th>Horário</th><th>Cliente</th><th>Profissional</th><th>Serviço</th><th>Ação</th></tr></thead><tbody id="adminRows"></tbody></table></div>
+        <p class="reis-admin-foot">Excluir um agendamento libera o horário. Confirme os dados antes de excluir. A lista só é acessível a contas autorizadas pelo banco.</p>
+      </section>
+    </main></body></html>
